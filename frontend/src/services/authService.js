@@ -24,7 +24,7 @@ export const login = async (email, password) => {
 export const register = async (userData) => {
   try {
     // Ensure CSRF cookie is set before registration
-    await api.get('/sanctum/csrf-cookie');
+    //await api.get('/sanctum/csrf-cookie');
     const response = await api.post('/register', userData);
     
     // Store user data after successful registration
