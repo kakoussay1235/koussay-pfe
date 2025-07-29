@@ -10,7 +10,8 @@ class UserController extends Controller
     //
    public function register(Request $request)
 {
-    $validated = $request->validate([
+    try{
+            $validated = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6|confirmed',
@@ -21,14 +22,13 @@ class UserController extends Controller
         'email' => $validated['email'],
         'password' => bcrypt($validated['password']),
     ]);
+    return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
 
-    $token = $user->createToken('auth_token')->plainTextToken;
+    }
+    
+    catch(\Exception $e){
+        return response()->json(['error' => 'Registration failed', 'message' => $e->getMessage()], 400);
+    }
 
-    return response()->json([
-        'message' => 'User registered successfully',
-        'user' => $user,
-        'access_token' => $token,
-        'token_type' => 'Bearer',
-    ], 201);
 }
 }
