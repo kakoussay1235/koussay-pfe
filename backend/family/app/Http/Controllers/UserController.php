@@ -12,20 +12,20 @@ class UserController extends Controller
 {
     try{
             $validated = $request->validate([
-        'name' => 'required|string|max:255',
+        'fullName' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6|confirmed',
     ]);
 
     $user = User::create([
-        'name' => $validated['name'],
+        'fullName' => $validated['fullName'],
         'email' => $validated['email'],
         'password' => bcrypt($validated['password']),
     ]);
     return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
 
     }
-    
+
     catch(\Exception $e){
         return response()->json(['error' => 'Registration failed', 'message' => $e->getMessage()], 400);
     }
