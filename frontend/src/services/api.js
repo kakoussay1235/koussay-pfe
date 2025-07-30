@@ -21,6 +21,7 @@ api.interceptors.request.use(
     }
     
     // Récupérer le token CSRF avant chaque requête
+    /*
     try {
       await api.get('/sanctum/csrf-cookie');
       const token = localStorage.getItem('token');
@@ -30,6 +31,7 @@ api.interceptors.request.use(
     } catch (error) {
       console.error('Erreur lors de la récupération du CSRF token:', error);
     }
+      */
     
     return config;
   },

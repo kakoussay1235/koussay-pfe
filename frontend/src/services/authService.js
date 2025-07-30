@@ -31,6 +31,7 @@ export const register = async (userData) => {
     if (response.data.user) {
       localStorage.setItem('user', JSON.stringify(response.data.user));
     }
+    console.log('Registration successful:', response.data);
     
     return response.data;
   } catch (error) {

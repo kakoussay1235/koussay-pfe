@@ -11,7 +11,7 @@ const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
+    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -205,7 +205,7 @@ const RegistrationForm = () => {
             label="Full Name"
             type="text"
             placeholder="Enter your full name"
-            value={formData.fullName}
+            value={formData.name}
             onChange={(e) => handleInputChange('fullName', e.target.value)}
             error={errors.fullName}
             required
